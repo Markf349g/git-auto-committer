@@ -17,16 +17,13 @@ jobs:
           git config user.name "Markf349g"
           git config user.email "mark.vizzhachiy@gmail.com"
 
-      - name: Update AUTOFILE and commit
+      - name: Run a one-line script
         run: |
-          date -u +'%Y-%m-%d %H:%M:%S' >> AUTOFILE
-          git add AUTOFILE
+          echo " " >> README.md
+          git add README.md
           git commit -m "Automated Update" || echo "Nothing to commit"
 
       - name: Push changes
         run: |
+          git remote set-url origin https://yngfijiwtr@github.com/yngfijiwtr/DeskPal.git
           git push origin HEAD:main
-
-      - name: Clean up if committed
-        run: |
-          git diff --cached --exit-code || rm -f AUTOFILE
