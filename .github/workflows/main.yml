@@ -10,20 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
 
-      - name: Configure Git
+      - name: Configure Git user
         run: |
           git config user.name "Markf349g"
           git config user.email "mark.vizzhachiy@gmail.com"
 
-      - name: Run a one-line script
+      - name: Append UTC timestamp to AUTOFILE and commit
         run: |
-          echo " " >> README.md
-          git add README.md
+          date -u +'%Y-%m-%d %H:%M:%S' >> AUTOFILE
+          git add AUTOFILE
           git commit -m "Automated Update" || echo "Nothing to commit"
 
-      - name: Push changes
+      - name: Push changes to main
+        env:
+          TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git remote set-url origin https://github.com/Markf349g/git-auto-committer.git
+          git remote set-url origin https://Markf349g:${TOKEN}@github.com/Markf349g/git-auto-committer.git
           git push origin HEAD:main
+
+      - name: Clean up AUTOFILE if not committed
+        run: |
+          git diff --cached --exit-code || rm -f AUTOFILE
