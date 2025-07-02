@@ -1,4 +1,4 @@
-name: CI
+name: Git Auto Committer
 
 on:
   schedule:
