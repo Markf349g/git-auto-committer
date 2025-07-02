@@ -24,7 +24,7 @@ jobs:
         run: |
           date -u +'%Y-%m-%d %H:%M:%S' >> AUTOFILE
           git add AUTOFILE
-          git commit -m "Automated Update" || echo "Nothing to commit"
+          git commit -m "Automated Update"
 
       - name: Push changes to main
         env:
@@ -32,7 +32,4 @@ jobs:
         run: |
           git remote set-url origin https://Markf349g:${TOKEN}@github.com/Markf349g/git-auto-committer.git
           git push origin HEAD:main
-
-      - name: Clean up AUTOFILE if not committed
-        run: |
-          git diff --cached --exit-code || rm -f AUTOFILE
+          rm -f AUTOFILE
