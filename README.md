@@ -6,13 +6,6 @@ No UI required — minimal overhead, maximum traceability.
 
 ---
 
-## 🛠️ Developer Note
-
-> **⚠️ This tool is currently in active development.**  
-> The final release will include scheduling controls, smarter diff tracking, and improved logging.
-
----
-
 ## ⚙️ Features
 
 - ⏱️ Automatic Git commits on a timer (e.g., every 5 minutes)
